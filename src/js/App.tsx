@@ -22,6 +22,9 @@ export const App = () => {
       ...prev,
       { id: Date.now(), task: newTask, person: newPerson, deadline: newDeadline },
     ]);
+    setNewTask("")
+    setNewPerson("")
+    setNewDeadline("")
   };
 
   return (
