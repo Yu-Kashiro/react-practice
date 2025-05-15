@@ -1,22 +1,24 @@
 import * as React from "react";
 
 type Props = {
+  id: string;
   label: string;
   type: 'text' | 'date';
   value: string
   onChange: (value: string) => void;
 };
 
-export const TextField = ({label, type, value, onChange}: Props) => {
+export const TextField = ({id, label, type, value, onChange}: Props) => {
   return (
-    <>
-      <label htmlFor="">{label}</label>
+    <div className="flex gap-1">
+      <label htmlFor={id}>{label}</label>
       <input
+        id={id}
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="border"
+        className="border rounded pl-1"
       />
-    </>
+    </div>
   );
 };

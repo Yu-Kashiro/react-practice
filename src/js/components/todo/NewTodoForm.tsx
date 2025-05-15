@@ -23,28 +23,37 @@ export const NewTodoForm = ({ setTodoList }: Props) => {
   };
 
   return(
-    <>
+    <div className="flex justify-center gap-x-5 items-center">
+      <div>
       <TextField
+        id="task"
         label="タスク名"
         type="text"
         value={newTask}
         onChange={setNewTask}
       />
+      </div>
+      <div>
       <TextField
+        id="person"
         label="担当者"
         type="text"
         value={newPerson}
         onChange={setNewPerson}
       />
+      </div>
+      <div>
       <TextField
+        id="deadline"
         label="期限"
         type="date"
         value={newDeadline}
         onChange={setNewDeadline}
       />
-      <button className="border" onClick={addNewTodo}>
+      </div>
+      <button className="border p-2 w-16" onClick={addNewTodo}>
         追加
       </button>
-    </>
+    </div>
   );
 };
