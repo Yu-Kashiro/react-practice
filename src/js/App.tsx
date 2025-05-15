@@ -12,9 +12,13 @@ export const App = () => {
     <main className="text-center mx-auto w-4/5">
       <Heading level="h1" classname='mb-10'>TODO</Heading>
       <Heading level="h2" classname="mb-8">新規TODO作成</Heading>
-      <NewTodoForm setTodoList={setTodoList}/>
-      <Heading level="h2">TODO一覧</Heading>
-      <TodoList todoList={todoList}/>
+      <div className="mb-8">
+        <NewTodoForm setTodoList={setTodoList}/>
+      </div>
+      <div className="mb-8">
+        <Heading level="h2">TODO一覧</Heading>
+      </div>
+      <TodoList todoList={todoList} setTodoList={setTodoList}/>
     </main>
   );
 };
