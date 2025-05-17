@@ -1,23 +1,12 @@
 import * as React from "react";
 import { TodoList } from "./components/todo/TodoList";
 import { Heading } from "./components/parts/Heading";
-import { useEffect, useState } from "react";
 import { NewTodoForm } from "./components/todo/NewTodoForm";
 import { Todo } from "./components/todo/type";
+import { useTodoList } from "./components/todo/use-todo-list";
 
 export const App = () => {
-  const [todoList, setTodoList] = useState<Todo[]>([]);
-
-  useEffect(() => {
-    const todoListData = localStorage.getItem("todo-List");
-    if (todoListData) {
-    setTodoList(JSON.parse(todoListData));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("todo-List", JSON.stringify(todoList));
-  },[todoList]);
+  const { todoList, setTodoList } = useTodoList();
 
   return (
     <main className="text-center mx-auto w-4/5">
