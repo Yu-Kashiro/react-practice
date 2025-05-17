@@ -6,19 +6,19 @@ import { Todo } from "./components/todo/type";
 import { useTodoList } from "./components/todo/use-todo-list";
 
 export const App = () => {
-  const { todoList, setTodoList } = useTodoList();
+  const { todoList, addTodo, deleteTodo } = useTodoList();
 
   return (
     <main className="text-center mx-auto w-4/5">
       <Heading level="h1" classname='mb-10'>TODO</Heading>
       <Heading level="h2" classname="mb-8">新規TODO作成</Heading>
       <div className="mb-8">
-        <NewTodoForm setTodoList={setTodoList}/>
+        <NewTodoForm addTodo={addTodo}/>
       </div>
       <div className="mb-8">
         <Heading level="h2">TODO一覧</Heading>
       </div>
-      <TodoList todoList={todoList} setTodoList={setTodoList}/>
+      <TodoList todoList={todoList} deleteTodo={deleteTodo}/>
     </main>
   );
 };
