@@ -8,7 +8,7 @@ type Props = {
 export const Button = ({ onClick, children }: PropsWithChildren<Props>) => {
   return (
     <div>
-      <button className="border p-2 w-16 item-center" onClick={onClick}>
+      <button className="border px-2 w-fit item-center" onClick={onClick}>
         {children}
       </button>
     </div>
