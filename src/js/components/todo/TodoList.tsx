@@ -1,8 +1,8 @@
 import * as React from "react";
 import { TodoItem } from "./TodoItem";
-import { Todo } from "src/js/App";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { Todo } from "../../types/todo";
 
 type Props = {
   todoList: Todo[];
@@ -31,7 +31,6 @@ export const TodoList = ({ todoList, deleteTodo }: Props) => {
           />
         ))}
       </ul>
-      <div>{isLoggedIn ? "ログイン中" : "ログアウト中"}</div>
     </>
   );
 };
