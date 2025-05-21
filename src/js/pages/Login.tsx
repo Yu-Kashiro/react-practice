@@ -1,8 +1,8 @@
 import * as React from "react";
-import { TextField } from "../components/parts/TextField";
 import { useAuth } from "../hooks/use-auth";
 import { Button } from "@chakra-ui/react/button";
 import { Heading } from "@chakra-ui/react/typography";
+import { Input } from "@chakra-ui/react/input";
 
 export const Login = () => {
   const { login, userName, setUserName } = useAuth();
@@ -13,12 +13,10 @@ export const Login = () => {
           ログイン
         </Heading>
         <div className="flex gap-2">
-          <TextField
-            id="user-name"
-            label="ユーザー名"
-            type="text"
+          <Input
+            placeholder="ユーザー名"
             value={userName}
-            onChange={setUserName}
+            onChange={(e) => setUserName(e.target.value)}
           />
           <div>
             <Button onClick={login} colorScheme='blue'>ログイン</Button>

@@ -3,9 +3,9 @@ import { NewTodoForm } from "../components/todo/NewTodoForm";
 import { TodoList } from "../components/todo/TodoList";
 import { useAuth } from "../hooks/use-auth";
 import { useTodoList } from "../hooks/use-todo-list";
-import { TextField } from "../components/parts/TextField";
 import { Button } from "@chakra-ui/react/button";
 import { Heading } from "@chakra-ui/react/typography";
+import { Input } from "@chakra-ui/react/input";
 
 export const Todo = () => {
   const { todoList, addTodo, deleteTodo, filterWord, setFilterWord } = useTodoList();
@@ -29,12 +29,10 @@ export const Todo = () => {
         <Heading as='h2' size='2xl'>TODO一覧</Heading>
       </div>
       <div className="mb-8">
-        <TextField
-          id={"filter-word"}
-          label={"絞り込み"}
-          type="text"
+        <Input
+          placeholder="タスク名"
           value={filterWord}
-          onChange={setFilterWord}
+          onChange={(e) => setFilterWord(e.target.value)}
         />
       </div>
       <TodoList todoList={todoList} deleteTodo={deleteTodo} />
