@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Button } from "../components/parts/Button";
 import { Heading } from "../components/parts/Heading";
 import { TextField } from "../components/parts/TextField";
 import { useAuth } from "../hooks/use-auth";
+import { Button } from "@chakra-ui/react/button";
 
 export const Login = () => {
   const { login, userName, setUserName } = useAuth();
@@ -21,7 +21,7 @@ export const Login = () => {
             onChange={setUserName}
           />
           <div>
-            <Button onClick={login}>ログイン</Button>
+            <Button onClick={login} colorScheme='blue'>ログイン</Button>
           </div>
         </div>
       </main>

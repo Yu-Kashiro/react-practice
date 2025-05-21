@@ -1,8 +1,7 @@
 import * as React from "react";
 import { TextField } from "../parts/TextField";
 import { useState } from "react";
-import { Todo } from "../../App";
-import { Button } from "../parts/Button";
+import { Button } from "@chakra-ui/react/button";
 
 type Props = {
   addTodo: (newTask: string, newPerson: string, newDeadline: string) => void
@@ -50,7 +49,7 @@ export const NewTodoForm = ({ addTodo }: Props) => {
         onChange={setNewDeadline}
       />
       </div>
-      <Button onClick={addNewTodo}>追加</Button>
+      <Button onClick={addNewTodo} colorScheme='blue'>追加</Button>
     </div>
   );
 };

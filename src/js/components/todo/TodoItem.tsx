@@ -1,8 +1,9 @@
 import * as React from "react";
-import { Button } from "../parts/Button";
 import { useAuth } from "../../hooks/use-auth";
+import { memo } from "react";
+import { Button } from "@chakra-ui/react/button";
 
-type TodoItemProps = {
+type Props = {
   id: number;
   task: string;
   person: string;
@@ -10,13 +11,7 @@ type TodoItemProps = {
   deleteTodo: (id: number) => void;
 };
 
-export const TodoItem: React.FC<TodoItemProps> = ({
-  id,
-  task,
-  person,
-  deadline,
-  deleteTodo,
-}) => {
+export const TodoItem = memo(({ id, task, person, deadline, deleteTodo }: Props) => {
   const { userName } = useAuth();
   const style = userName === person ? "text-red-600 font-bold" : "";
   return (
@@ -26,9 +21,9 @@ export const TodoItem: React.FC<TodoItemProps> = ({
         <div className={style}>{person}</div>
         <div>{deadline}</div>
         <div>
-          <Button onClick={() => deleteTodo(id)}>削除</Button>
+          <Button onClick={() => deleteTodo(id)} size='sm' colorScheme='red'>削除</Button>
         </div>
       </li>
     </>
   );
-};
+});
