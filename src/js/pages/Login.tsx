@@ -1,15 +1,15 @@
 import * as React from "react";
-import { Heading } from "../components/parts/Heading";
 import { TextField } from "../components/parts/TextField";
 import { useAuth } from "../hooks/use-auth";
 import { Button } from "@chakra-ui/react/button";
+import { Heading } from "@chakra-ui/react/typography";
 
 export const Login = () => {
   const { login, userName, setUserName } = useAuth();
   return (
     <>
       <main className="text-center mx-auto w-4/5">
-        <Heading level="h1" classname="mb-10">
+        <Heading as='h2' size='2xl'>
           ログイン
         </Heading>
         <div className="flex gap-2">
