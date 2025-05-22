@@ -2,6 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 import { Button } from "@chakra-ui/react/button";
 import { Input } from "@chakra-ui/react/input";
+import { HStack } from "@chakra-ui/react";
 
 type Props = {
   addTodo: (newTask: string, newPerson: string, newDeadline: string) => void;
@@ -21,7 +22,7 @@ export const NewTodoForm = ({ addTodo }: Props) => {
   };
 
   return (
-    <div className="flex justify-center gap-x-5 items-center">
+    <HStack spacing="4">
       <Input
         placeholder="タスク名"
         value={newTask}
@@ -41,6 +42,6 @@ export const NewTodoForm = ({ addTodo }: Props) => {
       <Button onClick={addNewTodo} colorScheme="blue">
         追加
       </Button>
-    </div>
+    </HStack>
   );
 };

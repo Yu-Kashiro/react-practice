@@ -1,41 +1,53 @@
 import * as React from "react";
 import { NewTodoForm } from "../components/todo/NewTodoForm";
-import { TodoList } from "../components/todo/TodoList";
 import { useAuth } from "../hooks/use-auth";
 import { useTodoList } from "../hooks/use-todo-list";
 import { Button } from "@chakra-ui/react/button";
 import { Heading } from "@chakra-ui/react/typography";
 import { Input } from "@chakra-ui/react/input";
+import { Avatar, Box, HStack } from "@chakra-ui/react";
+import { TodoTable } from "../components/todo/TodoTable";
 
 export const Todo = () => {
   const { todoList, addTodo, deleteTodo, filterWord, setFilterWord } = useTodoList();
   const { logout, userName } = useAuth();
   return (
-    <main className="text-center mx-auto w-4/5">
-      <Heading as='h2' size='2xl'>
-        TODO
-      </Heading>
-      <div>{userName}</div>
-      <div>
-        <Button onClick={logout} colorScheme='red' size='sm'>ログアウト</Button>
-      </div>
-      <Heading as='h2' size='2xl'>
-        新規TODO作成
-      </Heading>
-      <div className="mb-8">
-        <NewTodoForm addTodo={addTodo} />
-      </div>
-      <div className="mb-8">
-        <Heading as='h2' size='2xl'>TODO一覧</Heading>
-      </div>
-      <div className="mb-8">
-        <Input
-          placeholder="タスク名"
-          value={filterWord}
-          onChange={(e) => setFilterWord(e.target.value)}
-        />
-      </div>
-      <TodoList todoList={todoList} deleteTodo={deleteTodo} />
-    </main>
+    <Box as="main" w="720px" mx="auto" mt="20">
+      <HStack as="header" justifyContent="space-between" spacing='4'>
+        <Heading as='h2' size='2xl'>
+          TODO
+        </Heading>
+        <HStack justifyContent="end" spacing='4'>
+          <HStack spacing='2'>
+            <Avatar size='sm'/>
+            <Box>{userName}</Box>
+          </HStack>
+          <Box>
+            <Button onClick={logout} colorScheme='red' size='sm' p='5'>ログアウト</Button>
+          </Box>
+        </HStack>
+      </HStack>
+      <Box as="section">
+        <Heading as='h2' size='2xl' mt='20'>
+          新規TODO作成
+        </Heading>
+        <Box mt='20'>
+          <NewTodoForm addTodo={addTodo} />
+        </Box>
+      </Box>
+      <Box as="section">
+        <Box mt='10'>
+          <Heading as='h2' size='2xl'>TODO一覧</Heading>
+        </Box>
+        <Box mt='10'>
+          <Input
+            placeholder="タスク名"
+            value={filterWord}
+            onChange={(e) => setFilterWord(e.target.value)}
+          />
+        </Box>
+      <TodoTable todoList={todoList} deleteTodo={deleteTodo} />
+      </Box>
+    </Box>
   );
 };
