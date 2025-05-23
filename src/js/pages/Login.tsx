@@ -5,9 +5,19 @@ import { Heading } from "@chakra-ui/react/typography";
 import { Input } from "@chakra-ui/react/input";
 import { Box } from "@chakra-ui/react/box";
 import { HStack } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export const Login = () => {
-  const { login, userName, setUserName } = useAuth();
+  const { isLoggedIn, login, userName, setUserName } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/todo");
+    }
+  }, [isLoggedIn]);
+
   return (
     <>
       <Box as="main" w={400} mx="auto" mt="20">

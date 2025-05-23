@@ -7,10 +7,20 @@ import { Heading } from "@chakra-ui/react/typography";
 import { Input } from "@chakra-ui/react/input";
 import { Avatar, Box, HStack } from "@chakra-ui/react";
 import { TodoTable } from "../components/todo/TodoTable";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export const Todo = () => {
   const { todoList, addTodo, deleteTodo, filterWord, setFilterWord } = useTodoList();
-  const { logout, userName } = useAuth();
+  const { isLoggedIn, logout, userName } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login");
+    }
+  }, [isLoggedIn]);
+
   return (
     <Box as="main" w="720px" mx="auto" mt="20">
       <HStack as="header" justifyContent="space-between" spacing='4'>
