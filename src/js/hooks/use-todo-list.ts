@@ -3,7 +3,7 @@ import { Todo } from "../types/todo";
 
 export const useTodoList = () => {
   const [todoList, setTodoList] = useState<Todo[]>([]);
-  const [filterWord, setFilterWord] = useState<string>("")
+  const [filterWord, setFilterWord] = useState<string>("");
 
   useEffect(() => {
     const todoListData = localStorage.getItem("todo-List");
@@ -12,29 +12,36 @@ export const useTodoList = () => {
     }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("todo-List", JSON.stringify(todoList));
-  }, [todoList]);
-
   const addTodo = (newTask: string, newPerson: string, newDeadline: string) => {
-    setTodoList((prev) => [
-      ...prev,
+    const updatedTodoList = [
+      ...todoList,
       {
         id: Date.now(),
         task: newTask,
         person: newPerson,
         deadline: newDeadline,
       },
-    ]);
+    ];
+    localStorage.setItem("todo-List", JSON.stringify(updatedTodoList));
+    setTodoList(updatedTodoList);
   };
 
-  const deleteTodo = useCallback((id: number) => {
-    setTodoList((prev) => prev.filter((todo) => todo.id !== id));
-  },[]);
+  const deleteTodo = (id: number) => {
+    const updatedTodoList = todoList.filter((todo) => todo.id !== id);
+    localStorage.setItem("todo-List", JSON.stringify(updatedTodoList));
+    setTodoList(updatedTodoList);
+  };
 
   const filteredTodoList = todoList.filter(
-    (todo) => todo.task.includes(filterWord) || todo.person.includes(filterWord),
+    (todo) =>
+      todo.task.includes(filterWord) || todo.person.includes(filterWord),
   );
 
-  return { todoList: filteredTodoList, addTodo, deleteTodo, filterWord, setFilterWord };
+  return {
+    todoList: filteredTodoList,
+    addTodo,
+    deleteTodo,
+    filterWord,
+    setFilterWord,
+  };
 };
