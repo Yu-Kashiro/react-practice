@@ -4,7 +4,7 @@ import { AuthContext } from "../contexts/AuthContext";
 const USER_NAME_KEY = "userNameKey";
 
 export const useAuth = () => {
-  const { isLoggedIn, setIsLoggedIn, userName, setUserName } =
+  const { isLoggedIn, setIsLoggedIn, userName, setUserName, isLoginCheckDone, setIsLoginCheckDone } =
     useContext(AuthContext);
 
   const login = () => {
@@ -26,7 +26,8 @@ export const useAuth = () => {
       setUserName(userNameData);
       setIsLoggedIn(true);
     }
+    setIsLoginCheckDone(true);
   }, []);
 
-  return { isLoggedIn, login, logout, userName, setUserName };
+  return { isLoggedIn, isLoginCheckDone, login, logout, userName, setUserName };
 };

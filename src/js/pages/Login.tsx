@@ -9,14 +9,16 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 export const Login = () => {
-  const { isLoggedIn, login, userName, setUserName } = useAuth();
+  const { isLoggedIn, isLoginCheckDone, login, userName, setUserName } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoginCheckDone && isLoggedIn) {
       navigate("/todo");
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, isLoginCheckDone]);
+
+  if (!isLoginCheckDone || isLoggedIn) return null;
 
   return (
     <>

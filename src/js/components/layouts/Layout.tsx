@@ -12,14 +12,16 @@ type Props = {
 }
 
 export const Layout = ({ children, title }: PropsWithChildren<Props>) => {
-  const { isLoggedIn, logout, userName } = useAuth();
+  const { isLoggedIn, isLoginCheckDone, logout, userName } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (isLoginCheckDone && !isLoggedIn) {
       navigate("/login");
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, isLoginCheckDone]);
+
+  if (!isLoginCheckDone || !isLoggedIn) return null;
 
   return(
     <>
